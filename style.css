@@ -1,0 +1,32 @@
+/* Fond galaxie violet avec étoiles en CSS */
+body {
+  margin:0;
+  padding:0;
+  font-family:'Roboto', sans-serif;
+  color:#fff;
+  background: radial-gradient(circle at 50% 50%, #4b0066 0%, #1a0033 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Générer les étoiles avec pseudo-element */
+body::before {
+  content:"";
+  position:fixed; top:0; left:0;
+  width:100%; height:100%;
+  background: transparent;
+  box-shadow:
+    10px 20px #fff,
+    100px 80px #fff,
+    200px 150px #fff,
+    300px 50px #fff,
+    400px 200px #fff,
+    500px 100px #fff,
+    600px 300px #fff,
+    700px 50px #fff,
+    800px 200px #fff,
+    900px 150px #fff;
+  opacity:0.3;
+  pointer-events:none;
+  z-index:-1;
+}
