@@ -1,0 +1,5 @@
+Flask>=2.3
+requests>=2.31
+python-dotenv>=1.0
+# Optionnel: bot Discord (pour interagir avec le serveur)
+discord.py>=2.4

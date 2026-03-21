@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Factory</title>
+    <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand__logo">DF</div>
+          <div class="brand__title">Dev Factory</div>
+        </div>
+        <nav class="menu">
+          <a href="/" class="menu__item">
+            <span class="menu__icon">🏠</span>
+            <span>Accueil</span>
+          </a>
+          <a href="#" class="menu__item">
+            <span class="menu__icon">🛠️</span>
+            <span>Commandes</span>
+          </a>
+          <a href="#" class="menu__item">
+            <span class="menu__icon">📄</span>
+            <span>Changelog</span>
+          </a>
+          <a href="#" class="menu__item">
+            <span class="menu__icon">⚙️</span>
+            <span>Réglages</span>
+          </a>
+        </nav>
+        {% if user %}
+        <div class="sidebar__footer">
+          <div class="user">
+            <div class="user__avatar">
+              {% if user.avatar %}
+              <img src="https://cdn.discordapp.com/avatars/{{ user.id }}/{{ user.avatar }}.png" alt="avatar" />
+              {% else %}
+              <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="avatar" />
+              {% endif %}
+            </div>
+            <div class="user__meta">
+              <div class="user__name">{{ user.username }}{% if user.discriminator %}#{{ user.discriminator }}{% endif %}</div>
+              <div class="user__sub">Connecté</div>
+            </div>
+          </div>
+          <a class="button button--ghost" href="/logout">Se déconnecter</a>
+        </div>
+        {% endif %}
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div class="topbar__title">Dev Factory</div>
+          <div class="topbar__actions">
+            <a class="button button--primary" href="https://discord.gg/wUFYspgTvX" target="_blank" rel="noopener noreferrer">Rejoindre Discord</a>
+          </div>
+        </header>
+
+        <section class="page">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          <div class="messages">
+            {% for category, message in messages %}
+            <div class="message message--{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% endwith %}
+
+          {% block content %}{% endblock %}
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>
